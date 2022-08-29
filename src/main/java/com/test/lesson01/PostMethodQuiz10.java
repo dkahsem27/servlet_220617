@@ -30,6 +30,7 @@ public class PostMethodQuiz10 extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		PrintWriter out = response.getWriter();
+		out.print("<html><head><title>결과</title></head><body>");
 		
 //		id가 일치하지 않는 경우 id가 일치하지 않습니다. 를 출력하세요.
 //		password가 일치하지 않는 경우 password가 일치하지 않습니다. 를 출력하세요.
@@ -43,5 +44,6 @@ public class PostMethodQuiz10 extends HttpServlet {
 			out.print(userMap.get("name") + "님 환영합니다!");
 		}
 		
+		out.print("</body></html>");
 	}
 }
