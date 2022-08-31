@@ -20,9 +20,33 @@
 	<%
 		int num1 = Integer.valueOf(request.getParameter("num1"));
 		int num2 = Integer.valueOf(request.getParameter("num2"));
-		String[] signArr = request.getParameterValues("sign");
+		
+		String operator = request.getParameter("operator");
+		// String[] signArr = request.getParameterValues("sign");
 		double result = 0;
-		String signStr = "";
+		
+		String printOperator = null;
+		
+		switch (operator) {
+		case "plus":
+			result = (double)num1 + num2;
+			printOperator = "+";
+			break;
+		case "minus":
+			result = (double)num1 - num2;
+			printOperator = "-";
+			break;
+		case "multiple":
+			result = (double)num1 * num2;
+			printOperator = "X";
+			break;
+		case "divide":
+			result = (double)num1 / num2;
+			printOperator = "÷";
+			// break; 생략 가능
+		}
+		
+		/* String signStr = "";
 		for (String sign : signArr) {
 			if (sign.equals("+")) {
 				result = (double)num1 + num2;
@@ -37,16 +61,28 @@
 				result = (double)num1 / num2;
 				signStr = "÷";
 			}
-		}
+		} */
 		
 	%>
 	
 	<div class="container">
 		<h1>계산 결과</h1>
 		<div class="display-3">
+			<%
+				out.print(num1 + " " + printOperator + " " + num2 + " = ");
+			%>
+			<span class="text-primary">
+				<% out.print(result); %>
+			</span>
+		</div>
+	</div>
+	
+	<%-- <div class="container">
+		<h1>계산 결과</h1>
+		<div class="display-3">
 			<%= num1 %> <%= signStr %> <%= num2 %> = 
 			<span class="text-info"><%= result %></span>
 		</div>
-	</div>
+	</div> --%>
 </body>
 </html>

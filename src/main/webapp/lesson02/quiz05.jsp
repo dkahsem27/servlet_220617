@@ -18,23 +18,30 @@
 </head>
 <body>
 	<div class="container">
-		<h1>사칙 연산 계산기</h1>
-		<form method="post" action="/lesson02/quiz04_1.jsp">
-			<div class="d-flex">
-				<input type="text" name="num1" class="form-control col-2">
-				<select name="operator" class="form-control col-1 ml-2">
-					<!-- <option>+</option>
-					<option>-</option>
-					<option>*</option>
-					<option>/</option> -->
-					<option value="plus">+</option>
-					<option value="minus">-</option>
-					<option value="multiple">*</option>
-					<option value="divide">/</option>
-				</select>
-				<input type="text" name="num2" class="form-control col-2 ml-2">
-				<input type="submit" value="계산하기" class="btn btn-success ml-2">
+		<form method="post" action="/lesson02/quiz05_1.jsp">
+			<div class="d-flex align-items-end">
+				<input type="text" name="length" class="form-control col-2">
+				<span class="ml-2">cm</span>
 			</div>
+			<div>
+				<label>
+					<input type="checkbox" name="unit" value="인치">
+					<span>인치</span>
+				</label>
+				<label>
+					<input type="checkbox" name="unit" value="야드">
+					<span>야드</span>
+				</label>
+				<label>
+					<input type="checkbox" name="unit" value="피트">
+					<span>피트</span>
+				</label>
+				<label>
+					<input type="checkbox" name="unit" value="미터">
+					<span>미터</span>
+				</label>
+			</div>
+			<button type="submit" class="btn btn-success">변환하기</button>
 		</form>
 	</div>
 </body>

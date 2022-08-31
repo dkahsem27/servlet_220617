@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,24 +20,29 @@
 </head>
 <body>
 	<div class="container">
-		<h1>사칙 연산 계산기</h1>
-		<form method="post" action="/lesson02/quiz04_1.jsp">
-			<div class="d-flex">
-				<input type="text" name="num1" class="form-control col-2">
-				<select name="operator" class="form-control col-1 ml-2">
-					<!-- <option>+</option>
-					<option>-</option>
-					<option>*</option>
-					<option>/</option> -->
-					<option value="plus">+</option>
-					<option value="minus">-</option>
-					<option value="multiple">*</option>
-					<option value="divide">/</option>
-				</select>
-				<input type="text" name="num2" class="form-control col-2 ml-2">
-				<input type="submit" value="계산하기" class="btn btn-success ml-2">
-			</div>
-		</form>
+		<%
+			List<String> goodsList = Arrays.asList(new String[]{ 
+			    "저지방 우유", "요플레 4개", "딸기 1팩", "삼겹살 300g", "생수 6개", "주방 세제"
+			});
+		%>
+		
+		<h1 class="text-center">장보기 목록</h1>
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>품목</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% for (int i = 0; i < goodsList.size(); i++) { %>
+				<tr>
+					<td><%= i + 1 %></td>
+					<td><%= goodsList.get(i) %></td>
+				</tr>
+				<% } %>
+			</tbody>
+		</table>
 	</div>
 </body>
 </html>

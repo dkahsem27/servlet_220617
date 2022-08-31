@@ -17,25 +17,43 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%
+		int cm = Integer.parseInt(request.getParameter("length"));
+		String[] unitArr = request.getParameterValues("unit");
+		double result = 0;
+		
+		/* for (String unit : unitArr) {
+			if (unit.equals("인치")) {
+				result = number / 2.54;
+			} else if (unit.equals("야드")) {
+				result = number / 91.44;
+			} else if (unit.equals("피트")) {
+				result = number / 30.48;
+			} else if (unit.equals("미터")) {
+				result = number / 100.0;
+			}
+		} */
+	%>
+	
 	<div class="container">
-		<h1>사칙 연산 계산기</h1>
-		<form method="post" action="/lesson02/quiz04_1.jsp">
-			<div class="d-flex">
-				<input type="text" name="num1" class="form-control col-2">
-				<select name="operator" class="form-control col-1 ml-2">
-					<!-- <option>+</option>
-					<option>-</option>
-					<option>*</option>
-					<option>/</option> -->
-					<option value="plus">+</option>
-					<option value="minus">-</option>
-					<option value="multiple">*</option>
-					<option value="divide">/</option>
-				</select>
-				<input type="text" name="num2" class="form-control col-2 ml-2">
-				<input type="submit" value="계산하기" class="btn btn-success ml-2">
-			</div>
-		</form>
+		<h1>길이 변환 결과</h1>
+		<h2><%= cm %>cm</div>
+		<hr>
+		<h2>
+			<%
+				for (String unit : unitArr) {
+					if (unit.equals("인치")) {
+						out.print((cm / 2.54) + " in<br>");
+					} else if (unit.equals("야드")) {
+						out.print((cm / 91.44) + " yd<br>");
+					} else if (unit.equals("피트")) {
+						out.print((cm / 30.48) + "ft<br>");
+					} else if (unit.equals("미터")) {
+						out.print((cm / 100.0) + "m");
+					}
+				}
+			%>
+		</h2>
 	</div>
 </body>
 </html>
