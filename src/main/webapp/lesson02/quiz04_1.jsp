@@ -17,6 +17,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
+	<%
+		int num1 = Integer.valueOf(request.getParameter("num1"));
+		int num2 = Integer.valueOf(request.getParameter("num2"));
+		String[] signArr = request.getParameterValues("sign");
+		double result = 0;
+		String signStr = "";
+		for (String sign : signArr) {
+			if (sign.equals("+")) {
+				result = (double)num1 + num2;
+				signStr = "+";
+			} else if (sign.equals("-")) {
+				result = (double)num1 - num2;
+				signStr = "-";
+			} else if (sign.equals("*")) {
+				result = (double)num1 * num2;
+				signStr = "X";
+			} else if (sign.equals("/")) {
+				result = (double)num1 / num2;
+				signStr = "÷";
+			}
+		}
+		
+	%>
+	
+	<div class="container">
+		<h1>계산 결과</h1>
+		<div class="display-3">
+			<%= num1 %> <%= signStr %> <%= num2 %> = 
+			<span class="text-info"><%= result %></span>
+		</div>
+	</div>
 </body>
 </html>

@@ -17,19 +17,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>사칙 연산 계산기</h1>
-	<form method="post" action="/lesson02/quiz04_1.jsp">
-		<div class="d-flex">
-			<input type="text" name="number">
-			<select name="sign">
-				<option>+</option>
-				<option>-</option>
-				<option>*</option>
-				<option>/</option>
-			</select>
-			<input type="text" name="result">
-			<input type="submit" value="계산하기">
-		</div>
-	</form>
+	<div class="container">
+		<h1>사칙 연산 계산기</h1>
+		<form method="post" action="/lesson02/quiz04_1.jsp">
+			<div class="d-flex">
+				<input type="text" name="num1" class="form-control col-2">
+				<select name="sign" class="form-control col-1 ml-2">
+					<option>+</option>
+					<option>-</option>
+					<option>*</option>
+					<option>/</option>
+				</select>
+				<input type="text" name="num2" class="form-control col-2 ml-2">
+				<input type="submit" value="계산하기" class="btn btn-success ml-2">
+			</div>
+		</form>
+	</div>
 </body>
 </html>
