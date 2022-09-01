@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,18 +19,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
+	<%
+		Calendar today = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 M월 d일");
+		for (int i = 0; i <= 1000; i += 100) {
+			
+			// 100씩 add한다
+			// i는 
+			today.add(Calendar.DATE, i);
+			out.print(i + "<br>");
+		}
+		out.print(sdf.format(today.getTime()));
+	%>
 	<div class="container">
-		<h1>메뉴 검색</h1>
-		<form method="post" action="/lesson02/quiz07_1.jsp">
-			<div class="d-flex align-items-end">
-				<input type="text" name="keyword" class="form-control col-3">
-				<label class="ml-2">
-					<input type="checkbox" name="starPointFilter" value="true">
-					<span>4점 이하 제외</span>
-				</label>
-			</div>
-			<button type="submit" class="btn btn-success mt-3">검색</button>
-		</form>
+		<h1>오늘부터 1일</h1>
+		<div class="display-3">100일: <span class="text-danger"></span></div>
 	</div>
 </body>
 </html>

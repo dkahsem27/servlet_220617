@@ -21,15 +21,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- 데이터 형태
-	 [
-	    {name="버거킹", "menu"="햄버거", "point":4.3},
-	    {name="도미노피자", "menu"="피자", "point":4.5},
-	    ...
-	 ] -->
-	
 	<%
-	List<Map<String, Object>> list = new ArrayList<>();
+		List<Map<String, Object>> list = new ArrayList<>();
 	    Map<String, Object> map = new HashMap<String, Object>() {{ put("name", "버거킹"); put("menu", "햄버거"); put("point", 4.3); } };
 	    list.add(map);
 	    map = new HashMap<String, Object>() {{ put("name", "BBQ"); put("menu", "치킨"); put("point", 3.8); } };
@@ -45,12 +38,24 @@
 	    map = new HashMap<String, Object>() {{ put("name", "반올림피자"); put("menu", "피자"); put("point", 4.3); } };
 	    list.add(map);
 	    
+		/* 데이터 형태
+		 [
+		    {name="버거킹", "menu"="햄버거", "point":4.3},
+		    {name="도미노피자", "menu"="피자", "point":4.5},
+		    ...
+		 ] 
+		*/
 	   
-	    // list에서 map 한줄씩 꺼내기
-	    // object to double java
+	    String keyword = request.getParameter("keyword");
+	    String starPointFilter = request.getParameter("starPointFilter"); // 체크됨: true, 체크안됨: null
+	    // out.print(keyword + "<br>");
+	    // out.print(starPointFilter);
+	    
+	    boolean exclude = starPointFilter != null; // 체크가 되었다면 4점 이하 제외
 	%>
 	
 	<div class="container">
+		<h1 class="text-center">검색 결과</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -60,11 +65,25 @@
 				</tr>
 			</thead>
 			<tbody>
+			<% 
+				// list에서 map 한줄씩 꺼내기
+				for (Map<String, Object> item : list) {
+					if (keyword.equals(item.get("menu"))) {	// 메뉴명이 일치할 때
+						// 출력 skip을 해야 하는 조건
+						// object to double 캐스팅
+						if (exclude && (double)item.get("point") <= 4.0) { // 체크가 되었을 때 && 4.0 이하일 때 => 제외한다
+							continue;
+						}
+			%>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td><%= item.get("menu") %></td>
+					<td><%= item.get("name") %></td>
+					<td><%= item.get("point") %></td>
 				</tr>
+			<% 
+					} // if문 닫히는 부분
+				} // for문 닫히는 부분
+			%>
 			</tbody>
 		</table>
 	</div>
