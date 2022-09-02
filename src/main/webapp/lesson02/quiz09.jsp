@@ -22,18 +22,18 @@
 	<%
 		Calendar today = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 M월 d일");
-		for (int i = 0; i <= 1000; i += 100) {
-			
-			// 100씩 add한다
-			// i는 
-			today.add(Calendar.DATE, i);
-			out.print(i + "<br>");
-		}
-		out.print(sdf.format(today.getTime()));
+		today.add(Calendar.DATE, -1); // 어제
 	%>
 	<div class="container">
 		<h1>오늘부터 1일</h1>
-		<div class="display-3">100일: <span class="text-danger"></span></div>
+		<%
+			for (int i = 1; i <= 10; i++) {
+				today.add(Calendar.DATE, 100);
+		%>
+		<div class="display-3"><%= i * 100 %>일: <span class="text-danger"><%= sdf.format(today.getTime()) %></span></div>
+		<%
+			}
+		%>
 	</div>
 </body>
 </html>
