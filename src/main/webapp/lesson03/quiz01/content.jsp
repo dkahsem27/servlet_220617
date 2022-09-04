@@ -43,26 +43,35 @@
 	map = new HashMap<String, String>() {{ put("ch", "121"); put("name", "KBSN 스포츠"); put("category", "스포츠"); } };
 	list.add(map);
 %>
-<section class="content">
+<section class="content px-3">
 	<table class="table text-center">
 		<thead>
-			<tr>
-				<th>채널</th>
-				<th>채널명</th>
-				<th>카테고리</th>
+			<tr class="row">
+				<th class="col-3">채널</th>
+				<th class="col-6">채널명</th>
+				<th class="col-3">카테고리</th>
 			</tr>
 		</thead>
 		<tbody>
 		<%
 			String category = request.getParameter("category");
 			for (Map<String, String> item : list) {
-				if (category != null) {
-					// 카테고리별로 파라미터값을 불러와야함
+				if (category != null) { // 카테고리 별
+					if (category.equals(item.get("category"))) { // 파라미터값과 동일한 카테고리 불러오기
 		%>
-			<tr>
-				<td><%=item.get("ch")%></td>
-				<td><%=item.get("name")%></td>
-				<td><%=item.get("category")%></td>
+			<tr class="row">
+				<td class="col-3"><%=item.get("ch")%></td>
+				<td class="col-6"><%=item.get("name")%></td>
+				<td class="col-3"><%=item.get("category")%></td>
+			</tr>
+		<%
+					}
+				} else { // 전체 category = null
+		%>
+			<tr class="row">
+				<td class="col-3"><%=item.get("ch")%></td>
+				<td class="col-6"><%=item.get("name")%></td>
+				<td class="col-3"><%=item.get("category")%></td>
 			</tr>
 		<%
 				}
