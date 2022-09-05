@@ -56,17 +56,7 @@
 		<%
 			String category = request.getParameter("category");
 			for (Map<String, String> item : list) {
-				if (category != null) { // 카테고리 별
-					if (category.equals(item.get("category"))) { // 파라미터값과 동일한 카테고리 불러오기
-		%>
-			<tr class="row">
-				<td class="col-3"><%=item.get("ch")%></td>
-				<td class="col-6"><%=item.get("name")%></td>
-				<td class="col-3"><%=item.get("category")%></td>
-			</tr>
-		<%
-					}
-				} else { // 전체 category = null
+				if (category == null || (category != null && category.equals(item.get("category")))) {
 		%>
 			<tr class="row">
 				<td class="col-3"><%=item.get("ch")%></td>
