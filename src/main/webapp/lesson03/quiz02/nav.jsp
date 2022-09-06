@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- nav -->
 <nav class="mt-3">
 	<ul class="nav">
 		<li class="nav-item"><a href="#"

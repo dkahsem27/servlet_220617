@@ -83,8 +83,8 @@
 	musicInfo.put("lyricist", "아이유");
 	musicList.add(musicInfo);
 %>
-<!-- contents:list -->
-<div class="contents w-100 mt-4">
+
+<section class="contents w-100 mt-4">
 	<!-- 아티스트 정보 -->
 	<div class="d-flex p-3 border border-success">
 		<img alt="아티스트이미지" width=180 src="<%= artistInfo.get("photo") %>">
@@ -122,4 +122,4 @@
 			</table>
 		</div>
 	</div>
-</div>
+</section>

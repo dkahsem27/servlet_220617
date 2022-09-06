@@ -82,28 +82,38 @@
 	musicInfo.put("composer", "아이유,이종훈,이채규");
 	musicInfo.put("lyricist", "아이유");
 	musicList.add(musicInfo);
+%>
+
+<%
+	// 상세정보를 보여줄 target map 세팅
+	Map<String, Object> target = null;
 	
-	String search = request.getParameter("search"); // 검색값
-	
-	int id = Integer.parseInt(request.getParameter("id"));
-	Map<String, Object> target = new HashMap<>();
-	for (Map<String, Object> item : musicList) {
-		if (id == (int)item.get("id")) {
-			target = item;
-			break;
-		} 
-		/* if (search.equals(item.get("title"))) {
-			
-		} */
+	// 1. 목록에서 클릭하고 들어온 경우(id값)
+	if (request.getParameter("id") != null) {
+		int paramId = Integer.parseInt(request.getParameter("id"));
+		for (Map<String, Object> music : musicList) {
+			if (paramId == (int)music.get("id")) {
+				target = music;
+				break; // id는 값이 하나기 때문에 반복문을 덜 돌리기 위해서 break;
+			}
+		}
 	}
 	
-	// 재생시간 구하기
-	int min = (int)target.get("time") / 60;
-	int sec = (int)target.get("time") % 60;
-	
+	// 2. 상단에서 검색한 경우(search값)
+	if (request.getParameter("search") != null) {
+		String paramSearch = request.getParameter("search");
+		for (Map<String, Object> music : musicList) {
+			if (paramSearch.equals((String)music.get("title"))) { // Object인 상태이기 때문에 String으로 캐스팅 해준다
+				target = music;
+				break;
+			}
+		}
+	}
 %>
-<!-- contents:info -->
-<div class="contents w-100 mt-4">
+<%
+	if (target != null) {
+%>
+<section class="contents w-100 mt-4">
 	<!-- 곡 정보 -->
 	<h4 class="mb-3 font-weight-bold">곡 정보</h4>
 	<div class="d-flex p-3 border border-success">
@@ -118,7 +128,7 @@
 				</div>
 				<div class="d-flex">
 					<div class="detail-title">재생시간</div>
-					<div><%= min %> : <%= sec %></div>
+					<div><%= (int)target.get("time") / 60 %>:<%= (int)target.get("time") % 60 %></div>
 				</div>
 				<div class="d-flex">
 					<div class="detail-title">작곡가</div>
@@ -137,4 +147,13 @@
 		<hr>
 		<div>가사 정보 없음</div>
 	</div>
-</div>
+</section>
+<%
+	} else {
+%>
+<section class="contents">
+	<div class="text-secondary mt-5">정보 없음</div>
+</section>
+<%
+	}
+%>
