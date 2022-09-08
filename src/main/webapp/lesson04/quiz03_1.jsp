@@ -1,5 +1,3 @@
-<%@page import="java.sql.ResultSet"%>
-<%@page import="com.test.common.MysqlService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,30 +15,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <style type="text/css">
-	li {list-style: none;}
-	a {text-decoration: none !important;}
 	.text-orange {color: orange;}
 	.bg-orange {background: orange;}
 	.text-chocolate {color: chocolate;}
 	.nav {height: 50px;}
 	.nav a {font-size: 20px;}
-	
-	.item {width: 32%; border: 1px solid orange;}
-	.item:not(:first-child, :nth-child(4n)) {margin-left: 2%;}
-	.item:hover {background: orange; transition: all 200ms;}
-	.item > .inner {overflow: hidden; cursor: default;}
-	.image {width: 100%; height: 200px; background: #eee; text-align: center; line-height: 200px; font-size: 25px;}
-	.image > img {min-width: 100%; height: 200px; object-fit: cover;}
 </style>
 </head>
 <body>
-<%
-	MysqlService ms = MysqlService.getInstance();
-	ms.connect();
-	
-	String selectQuery = "select * from `seller` as a join `used_goods` as b on a.id = b.sellerId order by b.id desc";
-	ResultSet result = ms.select(selectQuery);
-%>
 	<div class="container">
 		<!-- header -->
 		<header class="bg-orange">
@@ -53,46 +35,19 @@
 				<li class="nav-items"><a href="#" class="nav-link text-white font-weight-bold">마이 페이지</a></li>
 			</ul>
 		</header>
-		<!-- contents:list -->
-		<div class="list">
-			<ul class="d-flex flex-wrap w-100 pl-0">
-			<%
-				while (result.next()) {
-					if (result.getString("pictureUrl") != null) {
-			%>
-				<li class="item mt-3 p-3">
-					<div class="inner">
-						<div class="image"><img src="<%= result.getString("pictureUrl") %>" alt="상품이미지"></div>
-						<div class="mt-2 font-weight-bold"><%= result.getString("title") %></div>
-						<div class="mt-1 text-secondary"><%= result.getInt("price") %>원</div>
-						<div class="mt-1 text-chocolate"><%= result.getString("nickname") %></div>
-					</div>
-				</li>
-			<%
-					} else {
+		<!-- contents:update -->
+		<div class="display-4">물건 올리기</div>
+		<form method="post" action="/lesson04/quiz03_insert">
+			<div class="d-flex">
+				<select name="nickname" class="form-control col-3">
+					<option>-</option>
+				</select>
+				<input type="text" name="title" class="form-control col-6">
+				<input type="text" name="price">
+				<button type="button" class="btn btn-light">원</button>
+			</div>
 			
-			%>
-				<li class="item mt-3 p-3">
-					<div class="inner">
-						<div class="image"><div class="text-secondary">이미지 없음</div></div>
-						<div class="mt-2 font-weight-bold"><%= result.getString("title") %></div>
-						<div class="mt-1 text-secondary"><%= result.getInt("price") %>원</div>
-						<div class="mt-1 text-chocolate"><%= result.getString("nickname") %></div>
-					</div>
-				</li>
-			<%
-					}
-				}
-			%>
-			</ul>
-		</div>
-		<!-- footer -->
-		<footer class="py-3 text-center">
-			<small class="text-secondary">Copyright 2022. HONG All Rights Reserved.</small>
-		</footer>
+		</form>
 	</div>
-<%
-	ms.disconnect();
-%>
 </body>
 </html>

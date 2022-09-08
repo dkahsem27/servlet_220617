@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>즐겨찾기 목록</title>
 <!-- jQuery : datepicker 라이브러리 위에 있어야 한다.  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>        
 
@@ -18,19 +18,19 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="mb-3">즐겨찾기 추가</h1>
-		<form method="get" action="/lesson04/quiz02_insert">
-			<p>
-				사이트명: <br>
-				<input type="text" name="name" class="form-control col-5">
-			</p>
-			<p>
-				사이트 주소: <br>
-				<input type="text" name="url" class="form-control col-5">
-			</p>
-			<p>
+		<h1 class="py-3">즐겨찾기 추가</h1>
+		<form method="post" action="/lesson04/quiz02_insert">
+			<label class="w-100">
+				<span>사이트명:</span>
+				<input type="text" name="name" class="form-control col-4">
+			</label>
+			<label class="w-100">
+				<span>사이트 주소:</span>
+				<input type="text" name="url" class="form-control col-8">
+			</label>
+			<div class="mt-3">
 				<input type="submit" value="추가" class="btn btn-success"></input>
-			</p>
+			</div>
 		</form>
 	</div>
 </body>

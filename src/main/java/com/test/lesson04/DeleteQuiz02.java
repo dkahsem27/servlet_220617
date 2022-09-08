@@ -12,14 +12,15 @@ import com.test.common.MysqlService;
 
 @WebServlet("/lesson04/quiz02_delete")
 public class DeleteQuiz02 extends HttpServlet {
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		
 		MysqlService ms = MysqlService.getInstance();
 		ms.connect();
 		
-		String deleteQuery = "delete from `favorite` where `id`=" + id;
+		String deleteQuery = "delete from `favorite` where `id` = " + id;
 		try {
 			ms.update(deleteQuery);
 		} catch (SQLException e) {
