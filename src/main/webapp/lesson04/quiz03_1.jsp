@@ -15,11 +15,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <style type="text/css">
+	* {box-sizing: border-box;}
+	a {text-decoration: none !important;}
 	.text-orange {color: orange;}
 	.bg-orange {background: orange;}
 	.text-chocolate {color: chocolate;}
-	.nav {height: 50px;}
+	.nav {height: 60px;}
 	.nav a {font-size: 20px;}
+	
+	.contents {margin: 0 auto;}
 </style>
 </head>
 <body>
@@ -27,7 +31,7 @@
 		<!-- header -->
 		<header class="bg-orange">
 			<h1 class="py-3 text-center">
-				<a href="#" class="text-center font-weight-bold text-white">홍당무 마켓</a>
+				<a href="/lesson04/quiz03.jsp" class="text-center font-weight-bold text-white">홍당무 마켓</a>
 			</h1>
 			<ul class="nav nav-fill align-items-center justify-content-around">
 				<li class="nav-items"><a href="/lesson04/quiz03.jsp" class="nav-link text-white font-weight-bold">리스트</a></li>
@@ -36,18 +40,36 @@
 			</ul>
 		</header>
 		<!-- contents:update -->
-		<div class="display-4">물건 올리기</div>
-		<form method="post" action="/lesson04/quiz03_insert">
-			<div class="d-flex">
-				<select name="nickname" class="form-control col-3">
-					<option>-</option>
-				</select>
-				<input type="text" name="title" class="form-control col-6">
-				<input type="text" name="price">
-				<button type="button" class="btn btn-light">원</button>
+		<section class="contents px-5">
+			<div class="display-4 py-5">물건 올리기</div>
+			<form method="post" action="/lesson04/quiz03_insert">
+				<div class="d-flex justify-content-between">
+					<select name="nickname" class="form-control col-3">
+						<option>-아이디 선택-</option>
+						<option>-</option>
+					</select>
+					<input type="text" name="title" placeholder="제목" class="form-control col-5">
+					<div class="input-group col-3 px-0">
+					  <input type="text" name="price" placeholder="가격" class="form-control">
+					  <div class="input-group-append">
+					    <span class="input-group-text">원</span>
+					  </div>
+					</div>
+				</div>
+			</form>
+			<textarea rows="10" class="w-100 mt-3"></textarea>
+			<div class="input-group mt-2">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text">이미지 URL</span>
+			  </div>
+			  <input type="text" class="form-control">
 			</div>
-			
-		</form>
+			<button type="submit" class="btn btn-light w-100 mt-3">저장</button>
+		</section>
+		<!-- footer -->
+		<footer class="py-5 text-center">
+			<small class="text-secondary">Copyright 2022. HONG All Rights Reserved.</small>
+		</footer>
 	</div>
 </body>
 </html>

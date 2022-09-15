@@ -17,16 +17,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <style type="text/css">
+	* {box-sizing: border-box;}
 	li {list-style: none;}
 	a {text-decoration: none !important;}
 	.text-orange {color: orange;}
 	.bg-orange {background: orange;}
 	.text-chocolate {color: chocolate;}
-	.nav {height: 50px;}
+	.nav {height: 60px;}
 	.nav a {font-size: 20px;}
 	
 	.item {width: 32%; border: 1px solid orange;}
-	.item:not(:first-child, :nth-child(4n)) {margin-left: 2%;}
+	.item:not(:last-child, :nth-child(3n)) {margin-right: 2%;}
 	.item:hover {background: orange; transition: all 200ms;}
 	.item > .inner {overflow: hidden; cursor: default;}
 	.image {width: 100%; height: 200px; background: #eee; text-align: center; line-height: 200px; font-size: 25px;}
@@ -45,7 +46,7 @@
 		<!-- header -->
 		<header class="bg-orange">
 			<h1 class="py-3 text-center">
-				<a href="#" class="text-center font-weight-bold text-white">홍당무 마켓</a>
+				<a href="/lesson04/quiz03.jsp" class="text-center font-weight-bold text-white">홍당무 마켓</a>
 			</h1>
 			<ul class="nav nav-fill align-items-center justify-content-around">
 				<li class="nav-items"><a href="/lesson04/quiz03.jsp" class="nav-link text-white font-weight-bold">리스트</a></li>
@@ -87,7 +88,7 @@
 			</ul>
 		</div>
 		<!-- footer -->
-		<footer class="py-3 text-center">
+		<footer class="py-5 text-center">
 			<small class="text-secondary">Copyright 2022. HONG All Rights Reserved.</small>
 		</footer>
 	</div>
