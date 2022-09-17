@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.test.common.MysqlService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,6 +29,13 @@
 </style>
 </head>
 <body>
+<%
+	MysqlService ms = MysqlService.getInstance();
+	ms.connect();
+	
+	String selectQuery = "select `id`, `nickname` from `seller`";
+	ResultSet result = ms.select(selectQuery);
+%>
 	<div class="container">
 		<!-- header -->
 		<header class="bg-orange">
@@ -42,34 +51,69 @@
 		<!-- contents:update -->
 		<section class="contents px-5">
 			<div class="display-4 py-5">물건 올리기</div>
-			<form method="post" action="/lesson04/quiz03_insert">
+			<form method="post" action="/lesson04/quiz03_insert" id="inputForm">
 				<div class="d-flex justify-content-between">
-					<select name="nickname" class="form-control col-3">
-						<option>-아이디 선택-</option>
-						<option>-</option>
+					<select id="selectSellerId" name="sellerId" class="form-control col-3">
+						<option value="default">-아이디 선택-</option>
+						<%
+							while (result.next()) {
+						%>
+						<option value="<%= result.getInt("id") %>"><%= result.getString("nickname") %></option>
+						<%
+							}
+						%>
 					</select>
-					<input type="text" name="title" placeholder="제목" class="form-control col-5">
+					<input type="text" id="inputTitle" name="title" placeholder="제목" class="form-control col-5">
 					<div class="input-group col-3 px-0">
-					  <input type="text" name="price" placeholder="가격" class="form-control">
+					  <input type="text" id="inputPrice" name="price" placeholder="가격" class="form-control">
 					  <div class="input-group-append">
 					    <span class="input-group-text">원</span>
 					  </div>
 					</div>
 				</div>
+				<textarea rows="10" name="description" class="w-100 mt-3"></textarea>
+				<div class="input-group mt-2">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text">이미지 URL</span>
+				  </div>
+				  <input type="text" name="pictureUrl" class="form-control">
+				</div>
+				<button type="submit" class="btn btn-light w-100 mt-3">저장</button>
 			</form>
-			<textarea rows="10" class="w-100 mt-3"></textarea>
-			<div class="input-group mt-2">
-			  <div class="input-group-prepend">
-			    <span class="input-group-text">이미지 URL</span>
-			  </div>
-			  <input type="text" class="form-control">
-			</div>
-			<button type="submit" class="btn btn-light w-100 mt-3">저장</button>
 		</section>
 		<!-- footer -->
 		<footer class="py-5 text-center">
 			<small class="text-secondary">Copyright 2022. HONG All Rights Reserved.</small>
 		</footer>
 	</div>
+<%
+	ms.disconnect();
+%>
+
+<script>
+	$(document).ready(function() {
+		$("#inputForm").on("submit", function(e) {
+			let title = $("#inputTitle").val();
+			let price = $("#inputPrice").val();
+			
+			if ($("#selectSellerId").val() == "default") {
+				alert("판매자를 선택하세요");
+				return false;
+			}
+			
+			if (title == null || title == "") {
+				alert("제목을 입력하세요");
+				return false;
+			}
+			
+			if (price == null || price == "") {
+				alert("가격을 입력하세요");
+				return false;
+			}
+			
+			return true;
+		});
+	});
+</script>
 </body>
 </html>

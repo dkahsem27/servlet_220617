@@ -59,11 +59,11 @@
 			<ul class="d-flex flex-wrap w-100 pl-0">
 			<%
 				while (result.next()) {
-					if (result.getString("pictureUrl") != null) {
+					if (result.getString("pictureUrl") == null || result.getString("pictureUrl").equals("")) {
 			%>
 				<li class="item mt-3 p-3">
 					<div class="inner">
-						<div class="image"><img src="<%= result.getString("pictureUrl") %>" alt="상품이미지"></div>
+						<div class="image"><div class="text-secondary">이미지 없음</div></div>
 						<div class="mt-2 font-weight-bold"><%= result.getString("title") %></div>
 						<div class="mt-1 text-secondary"><%= result.getInt("price") %>원</div>
 						<div class="mt-1 text-chocolate"><%= result.getString("nickname") %></div>
@@ -75,7 +75,7 @@
 			%>
 				<li class="item mt-3 p-3">
 					<div class="inner">
-						<div class="image"><div class="text-secondary">이미지 없음</div></div>
+						<div class="image"><img src="<%= result.getString("pictureUrl") %>" alt="상품이미지"></div>
 						<div class="mt-2 font-weight-bold"><%= result.getString("title") %></div>
 						<div class="mt-1 text-secondary"><%= result.getInt("price") %>원</div>
 						<div class="mt-1 text-chocolate"><%= result.getString("nickname") %></div>
